@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { ThemeProvider } from "@/context/ThemeContext";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -65,9 +67,12 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-screen bg-[#F5F3EE] text-[#171714] font-sans selection:bg-[#A68B68] selection:text-[#F5F3EE]"
+        className="min-h-screen bg-[#F5F3EE] dark:bg-[#171714] text-[#171714] dark:text-[#F5F3EE] font-sans selection:bg-[#41D2CB] selection:text-[#171714] transition-colors duration-500"
       >
-        {children}
+        <ThemeProvider>
+          {children}
+          <WhatsAppButton />
+        </ThemeProvider>
       </body>
     </html>
   );

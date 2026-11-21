@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
@@ -123,12 +124,12 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] text-[#171714] flex flex-col justify-between selection:bg-[#41D2CB] selection:text-[#171714]">
+    <div className="min-h-screen bg-[#F5F3EE] dark:bg-[#171714] text-[#171714] dark:text-[#F5F3EE] flex flex-col justify-between selection:bg-[#41D2CB] selection:text-[#171714] transition-colors duration-500">
       <Navbar forceSolid />
 
       <main className="w-full pt-32 sm:pt-40 lg:pt-48 pb-28">
         {/* HERO SECTION */}
-        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-20 border-b border-[#919297]/15">
+        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-20 border-b border-[#919297]/15 dark:border-[#919297]/25">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center space-x-3">
               <span className="w-8 h-[1.5px] bg-[#41D2CB]" />
@@ -141,7 +142,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-8xl text-[#171714] font-normal leading-[1.02] tracking-tight"
+              className="font-serif text-5xl sm:text-7xl lg:text-8xl text-[#171714] dark:text-[#F5F3EE] font-normal leading-[1.02] tracking-tight"
             >
               Spatial disciplines, <br />
               <span className="italic font-light text-[#919297]">executed with precision.</span>
@@ -151,112 +152,132 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-xl text-[#817C72] font-sans font-light leading-relaxed max-w-2xl pt-2"
+              className="text-base sm:text-xl text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed max-w-2xl pt-2"
             >
               From structural reconfiguration through bespoke bronze casting and private art curation,
               we shepherd commissions through complete architectural synthesis.
             </motion.p>
           </div>
+
+          {/* DEDICATED ARCHITECTURAL HERO BANNER */}
+          <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full aspect-[21/9] sm:aspect-[24/9] md:aspect-[28/10] overflow-hidden bg-[#E5DED2] dark:bg-[#24231F] mt-12 sm:mt-16 group shadow-sm"
+          >
+            <Image
+              src="/images/hero-services.jpg"
+              alt="Bespoke architectural joinery and materiality execution"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#171714]/60 via-[#171714]/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-4 left-6 sm:bottom-6 sm:left-8 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
+              <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.25em] uppercase text-[#F5F3EE] drop-shadow-xs">
+                TECTONIC RIGOR &bull; MATERIAL EXTRACTION &amp; ARTISANAL DETAILING
+              </span>
+            </div>
+          </motion.div>
         </section>
 
         {/* 5 COMPREHENSIVE SERVICE MODULES */}
         <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-28 space-y-20">
-          {DISCIPLINES.map((d, index) => {
-            const isReversed = index % 2 !== 0;
+          {DISCIPLINES.map((d) => (
+            <div
+              key={d.number}
+              className="p-8 sm:p-12 lg:p-16 bg-[#FAF8F5] dark:bg-[#1E1D19] border border-[#919297]/20 dark:border-[#919297]/25 relative overflow-hidden group hover:border-[#41D2CB] transition-colors"
+            >
+              {/* Big Index Number Watermark */}
+              <span className="absolute -bottom-8 -right-4 font-serif text-[120px] sm:text-[180px] text-[#919297]/10 select-none pointer-events-none font-bold">
+                {d.number}
+              </span>
 
-            return (
-              <div
-                key={d.number}
-                className="p-8 sm:p-12 lg:p-16 bg-[#FAF8F5] border border-[#919297]/20 relative overflow-hidden group hover:border-[#41D2CB] transition-colors"
-              >
-                {/* Floating Big Index Number Watermark */}
-                <span className="absolute -bottom-8 -right-4 font-serif text-[120px] sm:text-[180px] text-[#919297]/10 select-none pointer-events-none font-bold">
-                  {d.number}
-                </span>
-
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                  {/* Left Column: Title & Narrative */}
-                  <div className="lg:col-span-6 space-y-6">
-                    <div className="flex items-center space-x-3">
-                      <span className="font-serif text-2xl sm:text-3xl text-[#2AA8A1]">
-                        {d.number}
-                      </span>
-                      <span className="w-6 h-[1.5px] bg-[#41D2CB]" />
-                      <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-[#919297]">
-                        DISCIPLINE
-                      </span>
-                    </div>
-
-                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#171714] font-normal leading-tight">
-                      {d.title}
-                    </h2>
-
-                    <p className="text-xs uppercase tracking-[0.2em] text-[#919297] font-sans font-medium">
-                      {d.subtitle}
-                    </p>
-
-                    <p className="text-sm sm:text-base text-[#817C72] font-sans font-light leading-relaxed">
-                      {d.summary}
-                    </p>
-
-                    <div className="pt-2">
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#2AA8A1] block font-medium mb-1">
-                        MATERIAL PALETTE FOCUS
-                      </span>
-                      <p className="text-xs font-sans text-[#171714] font-light">
-                        {d.materialFocus}
-                      </p>
-                    </div>
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                {/* Left Column: Title & Narrative */}
+                <div className="lg:col-span-6 space-y-6">
+                  <div className="flex items-center space-x-3">
+                    <span className="font-serif text-2xl sm:text-3xl text-[#2AA8A1]">
+                      {d.number}
+                    </span>
+                    <span className="w-6 h-[1.5px] bg-[#41D2CB]" />
+                    <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-[#919297]">
+                      DISCIPLINE
+                    </span>
                   </div>
 
-                  {/* Right Column: Key Deliverables & Typologies */}
-                  <div className="lg:col-span-6 flex flex-col justify-between space-y-8 lg:border-l lg:border-[#919297]/20 lg:pl-10">
-                    <div className="space-y-4">
-                      <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-[#2AA8A1] font-medium block">
-                        TECHNICAL SCOPE &amp; DELIVERABLES
+                  <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#171714] dark:text-[#F5F3EE] font-normal leading-tight">
+                    {d.title}
+                  </h2>
+
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#919297] font-sans font-medium">
+                    {d.subtitle}
+                  </p>
+
+                  <p className="text-sm sm:text-base text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed">
+                    {d.summary}
+                  </p>
+
+                  <div className="pt-2">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#2AA8A1] block font-medium mb-1">
+                      MATERIAL PALETTE FOCUS
+                    </span>
+                    <p className="text-xs font-sans text-[#171714] dark:text-[#F5F3EE] font-light">
+                      {d.materialFocus}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right Column: Key Deliverables & Typologies */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-8 lg:border-l lg:border-[#919297]/20 lg:pl-10">
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-[#2AA8A1] font-medium block">
+                      TECHNICAL SCOPE &amp; DELIVERABLES
+                    </span>
+                    <ul className="space-y-3">
+                      {d.deliverables.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-xs sm:text-sm text-[#171714] dark:text-[#F5F3EE] font-sans">
+                          <div className="w-4 h-4 rounded-full bg-[#41D2CB]/20 flex items-center justify-center text-[#2AA8A1] shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5 stroke-[2.5]" />
+                          </div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="pt-6 border-t border-[#919297]/15 flex items-center justify-between">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#919297] block">
+                        REPRESENTATIVE TYPOLOGIES
                       </span>
-                      <ul className="space-y-3">
-                        {d.deliverables.map((item) => (
-                          <li key={item} className="flex items-start gap-3 text-xs sm:text-sm text-[#171714] font-sans">
-                            <div className="w-4 h-4 rounded-full bg-[#41D2CB]/20 flex items-center justify-center text-[#2AA8A1] shrink-0 mt-0.5">
-                              <Check className="w-2.5 h-2.5 stroke-[2.5]" />
-                            </div>
-                            <span>{item}</span>
-                          </li>
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {d.typologies.map((t) => (
+                          <span
+                            key={t}
+                            className="text-[10px] font-sans px-2.5 py-1 bg-[#F5F3EE] dark:bg-[#24231F] border border-[#919297]/20 text-[#817C72] dark:text-[#B8B3A8]"
+                          >
+                            {t}
+                          </span>
                         ))}
-                      </ul>
-                    </div>
-
-                    <div className="pt-6 border-t border-[#919297]/15 flex items-center justify-between">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-[#919297] block">
-                          REPRESENTATIVE TYPOLOGIES
-                        </span>
-                        <div className="flex flex-wrap gap-2 pt-1">
-                          {d.typologies.map((t) => (
-                            <span
-                              key={t}
-                              className="text-[10px] font-sans px-2.5 py-1 bg-[#F5F3EE] border border-[#919297]/20 text-[#817C72]"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
                       </div>
-
-                      <Link
-                        href="/contact"
-                        className="p-3 rounded-full bg-[#171714] text-[#F5F3EE] hover:bg-[#41D2CB] hover:text-[#171714] transition-colors ml-4 shrink-0"
-                        aria-label={`Inquire about ${d.title}`}
-                      >
-                        <ArrowUpRight className="w-4 h-4" />
-                      </Link>
                     </div>
+
+                    <Link
+                      href="/contact"
+                      className="p-3 rounded-full bg-[#171714] dark:bg-[#41D2CB] text-[#F5F3EE] dark:text-[#171714] hover:bg-[#41D2CB] dark:hover:bg-[#F5F3EE] transition-colors ml-4 shrink-0"
+                      aria-label={`Inquire about ${d.title}`}
+                    >
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </section>
 
         {/* FREQUENTLY ASKED QUESTIONS */}
@@ -265,7 +286,7 @@ export default function ServicesPage() {
             <span className="text-[11px] font-sans font-medium tracking-[0.3em] uppercase text-[#2AA8A1] block mb-3">
               CONSULTANCY FAQ
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl text-[#171714] font-normal tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#171714] dark:text-[#F5F3EE] font-normal tracking-tight">
               Inquiries regarding engagement.
             </h2>
           </div>
@@ -280,7 +301,7 @@ export default function ServicesPage() {
                     onClick={() => toggleFaq(i)}
                     className="w-full flex items-center justify-between text-left focus:outline-hidden group"
                   >
-                    <span className="font-serif text-xl sm:text-2xl text-[#171714] group-hover:text-[#2AA8A1] transition-colors pr-6">
+                    <span className="font-serif text-xl sm:text-2xl text-[#171714] dark:text-[#F5F3EE] group-hover:text-[#2AA8A1] transition-colors pr-6">
                       {faq.q}
                     </span>
                     <div
@@ -288,7 +309,7 @@ export default function ServicesPage() {
                         isOpen ? "rotate-180 bg-[#41D2CB]/20 border-[#41D2CB]" : ""
                       }`}
                     >
-                      <ChevronDown className="w-4 h-4 text-[#171714]" />
+                      <ChevronDown className="w-4 h-4 text-[#171714] dark:text-[#F5F3EE]" />
                     </div>
                   </button>
 
@@ -297,7 +318,7 @@ export default function ServicesPage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pt-4 text-xs sm:text-sm text-[#817C72] font-sans font-light leading-relaxed pr-8"
+                      className="pt-4 text-xs sm:text-sm text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed pr-8"
                     >
                       {faq.a}
                     </motion.div>

@@ -4,10 +4,13 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const handleScrollDown = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -55,17 +58,39 @@ export default function Hero() {
       className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-[#171714]"
       aria-label="Neluweera Design Studio Hero"
     >
-      {/* Background Architectural Video with Poster Fallback */}
+      {/* Background Architectural Visuals with Smooth Day / Night Cross-Fade */}
       <div className="absolute inset-0 w-full h-full overflow-hidden select-none">
-        {/* Poster Image */}
-        <Image
-          src="/images/hero-poster.jpg"
-          alt="Luxury architectural interior designed by Neluweera Design Studio"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center scale-105 transform motion-safe:animate-subtle-scale"
-        />
+        {/* Daytime / Light Mode Interior Image */}
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+            isDark ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          <Image
+            src="/images/hero-poster.jpg"
+            alt="Daytime luxury architectural interior by Neluweera Design Studio"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center scale-105 transform motion-safe:animate-subtle-scale"
+          />
+        </div>
+
+        {/* Evening / Dark Mode Interior Image (Lamp-lit warm ambient sanctuary) */}
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+            isDark ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          <Image
+            src="/images/hero-poster-dark.jpg"
+            alt="Evening warm ambient architectural interior by Neluweera Design Studio"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center scale-105 transform motion-safe:animate-subtle-scale"
+          />
+        </div>
 
         {/* Cinematic Video Element */}
         <video
@@ -74,14 +99,20 @@ export default function Hero() {
           muted
           loop
           playsInline
-          poster="/images/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-90 transition-opacity duration-1000"
+          poster={isDark ? "/images/hero-poster-dark.jpg" : "/images/hero-poster.jpg"}
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-85 transition-opacity duration-1000"
         >
           <source src="/videos/hero-interior.mp4" type="video/mp4" />
         </video>
 
         {/* Architectural Dark Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#171714] via-[#171714]/45 to-[#171714]/30 pointer-events-none" />
+        <div
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-1000 ${
+            isDark
+              ? "bg-gradient-to-t from-[#171714] via-[#171714]/60 to-[#171714]/35"
+              : "bg-gradient-to-t from-[#171714] via-[#171714]/45 to-[#171714]/25"
+          }`}
+        />
         <div className="absolute inset-0 bg-radial from-transparent via-[#171714]/20 to-[#171714]/60 pointer-events-none" />
       </div>
 

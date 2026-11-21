@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-ivory: #F5F3EE;
   --color-sand: #E5DED2;
@@ -24,7 +26,10 @@
 
 @layer base {
   * {
-    border-color: rgba(41, 40, 36, 0.1);
+    border-color: rgba(145, 146, 151, 0.15);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-duration: 400ms;
   }
 
   html {
@@ -36,9 +41,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html.dark {
+    background-color: #171714;
+    color: #F5F3EE;
+  }
+
   body {
-    background-color: #F5F3EE;
-    color: #171714;
+    background-color: inherit;
+    color: inherit;
     font-family: var(--font-dm-sans), sans-serif;
     overflow-x: hidden;
   }

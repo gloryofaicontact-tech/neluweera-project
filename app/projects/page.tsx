@@ -151,12 +151,12 @@ export default function ProjectsPage() {
       : FULL_PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] text-[#171714] flex flex-col justify-between selection:bg-[#41D2CB] selection:text-[#171714]">
+    <div className="min-h-screen bg-[#F5F3EE] dark:bg-[#171714] text-[#171714] dark:text-[#F5F3EE] flex flex-col justify-between selection:bg-[#41D2CB] selection:text-[#171714] transition-colors duration-500">
       <Navbar forceSolid />
 
       <main className="w-full pt-32 sm:pt-40 lg:pt-48 pb-28">
         {/* HERO SECTION */}
-        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-16 border-b border-[#919297]/15">
+        <section className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-16 border-b border-[#919297]/15 dark:border-[#919297]/25">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center space-x-3">
               <span className="w-8 h-[1.5px] bg-[#41D2CB]" />
@@ -169,7 +169,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-serif text-5xl sm:text-7xl lg:text-8xl text-[#171714] font-normal leading-[1.02] tracking-tight"
+              className="font-serif text-5xl sm:text-7xl lg:text-8xl text-[#171714] dark:text-[#F5F3EE] font-normal leading-[1.02] tracking-tight"
             >
               A curated monograph of <br />
               <span className="italic font-light text-[#919297]">considered spaces.</span>
@@ -179,14 +179,38 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-xl text-[#817C72] font-sans font-light leading-relaxed max-w-2xl pt-2"
+              className="text-base sm:text-xl text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed max-w-2xl pt-2"
             >
               Spanning high-calibre private residences, flagship commercial pavilions, and boutique hospitality retreats across Asia, the Middle East, and Australia.
             </motion.p>
           </div>
 
+          {/* DEDICATED ARCHITECTURAL HERO BANNER */}
+          <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full aspect-[21/9] sm:aspect-[24/9] md:aspect-[28/10] overflow-hidden bg-[#E5DED2] dark:bg-[#24231F] mt-12 sm:mt-16 group shadow-sm"
+          >
+            <Image
+              src="/images/hero-projects.jpg"
+              alt="Neluweera architectural portfolio and selected works"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#171714]/60 via-[#171714]/20 to-transparent pointer-events-none" />
+            <div className="absolute bottom-4 left-6 sm:bottom-6 sm:left-8 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
+              <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.25em] uppercase text-[#F5F3EE] drop-shadow-xs">
+                CURATED PORTFOLIO &bull; MONOGRAPH ARCHIVE 2018–2026
+              </span>
+            </div>
+          </motion.div>
+
           {/* Interactive Typology Filter Bar */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-14 pt-8 border-t border-[#919297]/15">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-14 pt-8 border-t border-[#919297]/15 dark:border-[#919297]/25">
             {CATEGORIES.map((cat) => {
               const isSelected = activeCategory === cat;
               const count =
@@ -200,13 +224,13 @@ export default function ProjectsPage() {
                   onClick={() => setActiveCategory(cat)}
                   className={`text-[11px] sm:text-xs font-sans uppercase tracking-[0.2em] px-4 py-2 transition-all duration-300 border flex items-center gap-2 ${
                     isSelected
-                      ? "border-[#171714] bg-[#171714] text-[#F5F3EE]"
-                      : "border-transparent text-[#919297] hover:text-[#171714] hover:border-[#919297]/30"
+                      ? "border-[#171714] dark:border-[#F5F3EE] bg-[#171714] dark:bg-[#F5F3EE] text-[#F5F3EE] dark:text-[#171714]"
+                      : "border-transparent text-[#919297] hover:text-[#171714] dark:hover:text-[#F5F3EE] hover:border-[#919297]/30"
                   }`}
                 >
                   {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />}
                   <span>{cat}</span>
-                  <span className={`text-[10px] ${isSelected ? "text-[#41D2CB]" : "text-[#919297]/70"}`}>
+                  <span className={`text-[10px] ${isSelected ? "text-[#41D2CB] dark:text-[#2AA8A1]" : "text-[#919297]/70"}`}>
                     ({count})
                   </span>
                 </button>
@@ -252,7 +276,7 @@ export default function ProjectsPage() {
                     onClick={() => setSelectedProject(project)}
                   >
                     {/* Visual Photographic Container */}
-                    <div className="relative w-full overflow-hidden bg-[#E5DED2] group">
+                    <div className="relative w-full overflow-hidden bg-[#E5DED2] dark:bg-[#24231F] group">
                       <div className={`relative w-full ${aspectClass} overflow-hidden`}>
                         <Image
                           src={project.image}
@@ -265,14 +289,14 @@ export default function ProjectsPage() {
 
                         {/* Monograph Index Pill */}
                         <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                          <span className="text-[10px] font-sans uppercase tracking-[0.25em] px-3 py-1 bg-[#F5F3EE]/95 text-[#171714] backdrop-blur-xs font-medium inline-flex items-center gap-1.5 border border-[#919297]/15">
+                          <span className="text-[10px] font-sans uppercase tracking-[0.25em] px-3 py-1 bg-[#F5F3EE]/95 dark:bg-[#171714]/90 text-[#171714] dark:text-[#F5F3EE] backdrop-blur-xs font-medium inline-flex items-center gap-1.5 border border-[#919297]/15">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
                             <span>0{idx + 1}</span>
                           </span>
                         </div>
 
                         {/* Interactive View Specifications Pill */}
-                        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 inline-flex items-center gap-2 px-4 py-2 bg-[#F5F3EE] text-[#171714] text-xs font-sans uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-md">
+                        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 inline-flex items-center gap-2 px-4 py-2 bg-[#F5F3EE] dark:bg-[#171714] text-[#171714] dark:text-[#F5F3EE] text-xs font-sans uppercase tracking-[0.2em] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-md">
                           <Eye className="w-3.5 h-3.5 text-[#2AA8A1]" />
                           <span>View Dossier</span>
                         </div>
@@ -281,7 +305,7 @@ export default function ProjectsPage() {
 
                     {/* Editorial Project Card Details */}
                     <div className="pt-6 flex flex-col space-y-2">
-                      <div className="flex items-center justify-between text-xs font-sans text-[#817C72]">
+                      <div className="flex items-center justify-between text-xs font-sans text-[#817C72] dark:text-[#B8B3A8]">
                         <span className="tracking-[0.25em] uppercase text-[#2AA8A1] font-medium">
                           {project.category}
                         </span>
@@ -292,12 +316,12 @@ export default function ProjectsPage() {
                         </div>
                       </div>
 
-                      <h3 className="font-serif text-2xl sm:text-3xl text-[#171714] font-normal leading-snug group-hover:text-[#2AA8A1] transition-colors flex items-center justify-between">
+                      <h3 className="font-serif text-2xl sm:text-3xl text-[#171714] dark:text-[#F5F3EE] font-normal leading-snug group-hover:text-[#2AA8A1] transition-colors flex items-center justify-between">
                         <span>{project.title}</span>
                         <ArrowUpRight className="w-5 h-5 text-[#919297] opacity-0 group-hover:opacity-100 transition-opacity" />
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-[#817C72] font-sans font-light leading-relaxed pt-1">
+                      <p className="text-xs sm:text-sm text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed pt-1">
                         {project.summary}
                       </p>
 
@@ -305,7 +329,7 @@ export default function ProjectsPage() {
                         {project.materials.slice(0, 2).map((m) => (
                           <span
                             key={m}
-                            className="text-[10px] font-sans tracking-wider uppercase px-2.5 py-0.5 bg-[#FAF8F5] border border-[#919297]/15 text-[#817C72]"
+                            className="text-[10px] font-sans tracking-wider uppercase px-2.5 py-0.5 bg-[#FAF8F5] dark:bg-[#24231F] border border-[#919297]/15 text-[#817C72] dark:text-[#B8B3A8]"
                           >
                             {m}
                           </span>
@@ -356,7 +380,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-[#171714]/80 backdrop-blur-sm"
+              className="fixed inset-0 bg-[#171714]/85 backdrop-blur-sm"
             />
 
             {/* Modal Dialog */}
@@ -365,7 +389,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 20 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-4xl bg-[#F5F3EE] text-[#171714] shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#919297]/20"
+              className="relative w-full max-w-4xl bg-[#F5F3EE] dark:bg-[#1E1D19] text-[#171714] dark:text-[#F5F3EE] shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#919297]/20"
             >
               {/* Close Button */}
               <button
@@ -377,14 +401,14 @@ export default function ProjectsPage() {
               </button>
 
               {/* Large Feature Photograph */}
-              <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-[#E5DED2] overflow-hidden">
+              <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-[#E5DED2] dark:bg-[#24231F] overflow-hidden">
                 <Image
                   src={selectedProject.image}
                   alt={selectedProject.title}
                   fill
                   className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#171714]/70 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#171714]/75 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
                   <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-[#41D2CB] block mb-1">
                     {selectedProject.category} &bull; {selectedProject.year}
@@ -403,7 +427,7 @@ export default function ProjectsPage() {
                     <span className="text-[10px] uppercase tracking-[0.2em] text-[#919297] block">
                       LOCATION
                     </span>
-                    <span className="font-serif text-lg text-[#171714] block mt-1">
+                    <span className="font-serif text-lg text-[#171714] dark:text-[#F5F3EE] block mt-1">
                       {selectedProject.location}
                     </span>
                   </div>
@@ -411,7 +435,7 @@ export default function ProjectsPage() {
                     <span className="text-[10px] uppercase tracking-[0.2em] text-[#919297] block">
                       TOTAL AREA
                     </span>
-                    <span className="font-serif text-lg text-[#171714] block mt-1">
+                    <span className="font-serif text-lg text-[#171714] dark:text-[#F5F3EE] block mt-1">
                       {selectedProject.area}
                     </span>
                   </div>
@@ -419,7 +443,7 @@ export default function ProjectsPage() {
                     <span className="text-[10px] uppercase tracking-[0.2em] text-[#919297] block">
                       TYPOLOGY
                     </span>
-                    <span className="font-serif text-lg text-[#171714] block mt-1">
+                    <span className="font-serif text-lg text-[#171714] dark:text-[#F5F3EE] block mt-1">
                       {selectedProject.category}
                     </span>
                   </div>
@@ -438,7 +462,7 @@ export default function ProjectsPage() {
                   <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-[#2AA8A1] font-medium block">
                     ARCHITECTURAL ESSAY &amp; BRIEF
                   </span>
-                  <p className="text-sm sm:text-base text-[#817C72] font-sans font-light leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed">
                     {selectedProject.description}
                   </p>
                 </div>
@@ -451,7 +475,7 @@ export default function ProjectsPage() {
                     </span>
                     <ul className="space-y-2">
                       {selectedProject.materials.map((m) => (
-                        <li key={m} className="text-xs sm:text-sm text-[#171714] font-sans flex items-center gap-2.5">
+                        <li key={m} className="text-xs sm:text-sm text-[#171714] dark:text-[#F5F3EE] font-sans flex items-center gap-2.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
                           <span>{m}</span>
                         </li>
@@ -465,7 +489,7 @@ export default function ProjectsPage() {
                     </span>
                     <ul className="space-y-2">
                       {selectedProject.features.map((f) => (
-                        <li key={f} className="text-xs sm:text-sm text-[#171714] font-sans flex items-center gap-2.5">
+                        <li key={f} className="text-xs sm:text-sm text-[#171714] dark:text-[#F5F3EE] font-sans flex items-center gap-2.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
                           <span>{f}</span>
                         </li>
@@ -482,7 +506,7 @@ export default function ProjectsPage() {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] bg-[#171714] text-[#F5F3EE] px-6 py-3 font-medium hover:bg-[#41D2CB] hover:text-[#171714] transition-colors"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] bg-[#171714] dark:bg-[#41D2CB] text-[#F5F3EE] dark:text-[#171714] px-6 py-3 font-medium hover:bg-[#41D2CB] dark:hover:bg-[#F5F3EE] transition-colors"
                   >
                     <span>Inquire About Similar Commission</span>
                     <ArrowUpRight className="w-4 h-4" />

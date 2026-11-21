@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import LampThemeToggle from "./LampThemeToggle";
+import { useTheme } from "@/context/ThemeContext";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -20,6 +22,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ forceSolid = false }: NavbarProps) {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const [isScrolled, setIsScrolled] = useState(forceSolid);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -61,7 +65,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-[#F5F3EE]/95 backdrop-blur-md py-3.5 border-b border-[#919297]/15 shadow-xs"
+            ? "bg-[#F5F3EE]/95 dark:bg-[#171714]/95 backdrop-blur-md py-3.5 border-b border-[#919297]/15 dark:border-[#919297]/25 shadow-xs"
             : "bg-transparent py-5 lg:py-7"
         }`}
       >
@@ -72,7 +76,7 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
             className="group flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-90"
             aria-label="Neluweera Design Studio Home"
           >
-            {/* New Geometric Emblem */}
+            {/* Geometric Emblem */}
             <div className="relative w-9 h-9 sm:w-11 sm:h-11 shrink-0">
               <Image
                 src="/images/logo.png"
@@ -92,7 +96,9 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
               <div className="flex items-baseline space-x-2">
                 <span
                   className={`font-serif text-lg sm:text-xl tracking-[0.2em] font-medium uppercase transition-colors duration-300 ${
-                    isLightHero ? "text-[#F5F3EE]" : "text-[#171714]"
+                    isLightHero
+                      ? "text-[#F5F3EE]"
+                      : "text-[#171714] dark:text-[#F5F3EE]"
                   }`}
                 >
                   NELUWEERA
@@ -100,7 +106,9 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                 <span className="hidden xl:inline-block w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
                 <span
                   className={`hidden xl:inline-block text-[10px] tracking-[0.15em] italic font-serif transition-colors duration-300 ${
-                    isLightHero ? "text-[#41D2CB]" : "text-[#2AA8A1]"
+                    isLightHero
+                      ? "text-[#41D2CB]"
+                      : "text-[#2AA8A1] dark:text-[#41D2CB]"
                   }`}
                 >
                   Spaces that inspire living
@@ -130,8 +138,8 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                         ? "text-[#F5F3EE] font-medium"
                         : "text-[#F5F3EE]/80 hover:text-[#41D2CB]"
                       : isActive
-                      ? "text-[#171714] font-medium"
-                      : "text-[#292824]/75 hover:text-[#2AA8A1]"
+                      ? "text-[#171714] dark:text-[#F5F3EE] font-medium"
+                      : "text-[#292824]/75 dark:text-[#E5DED2]/70 hover:text-[#2AA8A1] dark:hover:text-[#41D2CB]"
                   }`}
                 >
                   {link.label}
@@ -147,14 +155,19 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
             })}
           </nav>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop Actions: Interactive Lamp Pull Rope & CTA Button */}
+          <div className="hidden md:flex items-center space-x-6">
+            {/* Interactive Architectural Lamp Theme Switcher */}
+            <div className="pt-1">
+              <LampThemeToggle />
+            </div>
+
             <Link
               href="/contact"
               className={`group inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] px-5 py-2.5 transition-all duration-300 border ${
                 isLightHero
                   ? "border-[#41D2CB]/40 text-[#F5F3EE] hover:bg-[#41D2CB] hover:text-[#171714] hover:border-[#41D2CB]"
-                  : "border-[#919297]/40 text-[#171714] hover:bg-[#171714] hover:text-[#F5F3EE] hover:border-[#171714]"
+                  : "border-[#919297]/40 text-[#171714] dark:text-[#F5F3EE] hover:bg-[#171714] hover:text-[#F5F3EE] dark:hover:bg-[#41D2CB] dark:hover:text-[#171714] hover:border-[#171714]"
               }`}
             >
               <span>Let&apos;s Talk</span>
@@ -162,20 +175,26 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`md:hidden p-2 transition-colors duration-300 focus:outline-hidden ${
-              isLightHero ? "text-[#F5F3EE]" : "text-[#171714]"
-            }`}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6 stroke-[1.5]" />
-            ) : (
-              <Menu className="w-6 h-6 stroke-[1.5]" />
-            )}
-          </button>
+          {/* Mobile Right Controls: Lamp Toggle & Hamburger */}
+          <div className="md:hidden flex items-center space-x-4">
+            <div className="scale-90">
+              <LampThemeToggle />
+            </div>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 transition-colors duration-300 focus:outline-hidden ${
+                isLightHero ? "text-[#F5F3EE]" : "text-[#171714] dark:text-[#F5F3EE]"
+              }`}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 stroke-[1.5]" />
+              ) : (
+                <Menu className="w-6 h-6 stroke-[1.5]" />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -213,9 +232,15 @@ export default function Navbar({ forceSolid = false }: NavbarProps) {
                 </div>
               </div>
 
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#41D2CB] font-sans">
-                Navigation
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#41D2CB] font-sans">
+                  Navigation
+                </span>
+                <span className="text-[10px] font-sans uppercase tracking-widest text-[#919297]">
+                  Theme Active: {isLight ? "Light Mode" : "Dark Mode"}
+                </span>
+              </div>
+
               <nav className="flex flex-col space-y-5">
                 {NAV_LINKS.map((link, idx) => (
                   <motion.div

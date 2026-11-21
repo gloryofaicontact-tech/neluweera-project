@@ -80,7 +80,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative w-full py-28 sm:py-36 lg:py-44 bg-[#F5F3EE] text-[#171714] border-t border-[#919297]/15"
+      className="relative w-full py-28 sm:py-36 lg:py-44 bg-[#F5F3EE] dark:bg-[#171714] text-[#171714] dark:text-[#F5F3EE] border-t border-[#919297]/15 dark:border-[#919297]/25 transition-colors duration-500"
       aria-label="Areas of Expertise"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -90,14 +90,14 @@ export default function Services() {
             <span className="text-[11px] font-sans font-medium tracking-[0.3em] uppercase text-[#2AA8A1] block mb-4">
               03 &mdash; CAPABILITIES & DISCIPLINES
             </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#171714] font-normal tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#171714] dark:text-[#F5F3EE] font-normal tracking-tight">
               Our areas of <br />
               <span className="italic font-light text-[#919297]">expertise.</span>
             </h2>
           </div>
 
           <div className="lg:col-span-7 flex flex-col justify-end">
-            <p className="text-sm sm:text-base text-[#817C72] font-sans font-light leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed max-w-xl">
               We guide commissions from foundational spatial conception through bespoke construction detailing.
               Our multidisciplinary expertise synthesizes architecture, craft, and human ritual into cohesive environments.
             </p>
@@ -135,7 +135,7 @@ export default function Services() {
                     <span className="font-serif text-xl sm:text-2xl text-[#2AA8A1] font-light">
                       {service.number}
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#171714] font-normal group-hover:text-[#2AA8A1] transition-colors duration-300">
+                    <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#171714] dark:text-[#F5F3EE] font-normal group-hover:text-[#2AA8A1] transition-colors duration-300">
                       {service.title}
                     </h3>
                   </div>
@@ -146,9 +146,9 @@ export default function Services() {
                     </span>
                     <div className="w-9 h-9 rounded-full border border-[#919297]/30 group-hover:border-[#41D2CB] flex items-center justify-center transition-colors group-hover:bg-[#41D2CB]/10">
                       {isExpanded ? (
-                        <Minus className="w-3.5 h-3.5 text-[#171714] group-hover:text-[#2AA8A1]" />
+                        <Minus className="w-3.5 h-3.5 text-[#171714] dark:text-[#F5F3EE] group-hover:text-[#2AA8A1]" />
                       ) : (
-                        <Plus className="w-3.5 h-3.5 text-[#171714] group-hover:text-[#2AA8A1]" />
+                        <Plus className="w-3.5 h-3.5 text-[#171714] dark:text-[#F5F3EE] group-hover:text-[#2AA8A1]" />
                       )}
                     </div>
                   </div>
@@ -163,7 +163,7 @@ export default function Services() {
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="pt-6 sm:pt-8 pl-10 sm:pl-20 pr-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline overflow-hidden"
                   >
-                    <p className="md:col-span-7 text-sm sm:text-base text-[#817C72] font-sans font-light leading-relaxed">
+                    <p className="md:col-span-7 text-sm sm:text-base text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed">
                       {service.description}
                     </p>
 
@@ -175,7 +175,7 @@ export default function Services() {
                         {service.disciplines.map((d) => (
                           <li
                             key={d}
-                            className="text-xs text-[#292824] font-sans font-normal tracking-wide flex items-center space-x-2"
+                            className="text-xs text-[#292824] dark:text-[#E5DED2] font-sans font-normal tracking-wide flex items-center space-x-2"
                           >
                             <span className="w-1.5 h-[1.5px] bg-[#41D2CB]" />
                             <span>{d}</span>
@@ -192,12 +192,12 @@ export default function Services() {
 
         {/* Services CTA Banner */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#919297]/15 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-xs sm:text-sm text-[#817C72] font-sans">
+          <p className="text-xs sm:text-sm text-[#817C72] dark:text-[#B8B3A8] font-sans">
             Need a bespoke scope combining multiple architectural and styling disciplines?
           </p>
           <Link
             href="/services"
-            className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#171714] hover:text-[#2AA8A1] transition-colors"
+            className="group inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#171714] dark:text-[#F5F3EE] hover:text-[#2AA8A1] transition-colors"
           >
             <span>EXPLORE FULL SERVICE SCOPES</span>
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#41D2CB]" />

@@ -84,7 +84,7 @@ export default function SelectedProjects() {
   return (
     <section
       id="projects"
-      className="relative w-full py-28 sm:py-36 lg:py-44 bg-[#E5DED2]/30 text-[#171714] border-t border-[#919297]/15"
+      className="relative w-full py-28 sm:py-36 lg:py-44 bg-[#E5DED2]/30 dark:bg-[#1E1D19] text-[#171714] dark:text-[#F5F3EE] border-t border-[#919297]/15 dark:border-[#919297]/25 transition-colors duration-500"
       aria-label="Selected Projects Showcase"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -96,10 +96,10 @@ export default function SelectedProjects() {
                 02 &mdash; SELECTED PORTFOLIO
               </span>
             </div>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#171714] font-normal tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#171714] dark:text-[#F5F3EE] font-normal tracking-tight">
               Spaces with <span className="italic font-light text-[#919297]">character.</span>
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#817C72] font-sans font-light leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed">
               A collection of considered spaces, each with its own story, character and purpose.
             </p>
           </div>
@@ -114,8 +114,8 @@ export default function SelectedProjects() {
                   onClick={() => setActiveCategory(cat)}
                   className={`text-[11px] sm:text-xs font-sans uppercase tracking-[0.2em] px-4 py-2 transition-all duration-300 border flex items-center gap-1.5 ${
                     isSelected
-                      ? "border-[#171714] bg-[#171714] text-[#F5F3EE]"
-                      : "border-transparent text-[#919297] hover:text-[#171714] hover:border-[#919297]/30"
+                      ? "border-[#171714] dark:border-[#F5F3EE] bg-[#171714] dark:bg-[#F5F3EE] text-[#F5F3EE] dark:text-[#171714]"
+                      : "border-transparent text-[#919297] hover:text-[#171714] dark:hover:text-[#F5F3EE] hover:border-[#919297]/30"
                   }`}
                 >
                   {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />}
@@ -163,7 +163,7 @@ export default function SelectedProjects() {
                   {/* Image Container with Elegant Hover Zoom */}
                   <Link
                     href={`/projects`}
-                    className="relative w-full block overflow-hidden bg-[#E5DED2] focus:outline-hidden"
+                    className="relative w-full block overflow-hidden bg-[#E5DED2] dark:bg-[#24231F] focus:outline-hidden"
                     aria-label={`View ${project.title}`}
                   >
                     <div className={`relative w-full ${aspectClass} overflow-hidden`}>
@@ -178,7 +178,7 @@ export default function SelectedProjects() {
 
                       {/* Floating Monograph Badge with Teal Dot */}
                       <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                        <span className="text-[10px] font-sans uppercase tracking-[0.25em] px-2.5 py-1 bg-[#F5F3EE]/95 text-[#171714] backdrop-blur-xs font-medium inline-flex items-center gap-1.5 border border-[#919297]/15">
+                        <span className="text-[10px] font-sans uppercase tracking-[0.25em] px-2.5 py-1 bg-[#F5F3EE]/95 dark:bg-[#171714]/90 text-[#171714] dark:text-[#F5F3EE] backdrop-blur-xs font-medium inline-flex items-center gap-1.5 border border-[#919297]/15">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#41D2CB]" />
                           <span>0{index + 1}</span>
                         </span>
@@ -193,7 +193,7 @@ export default function SelectedProjects() {
 
                   {/* Minimal Editorial Project Metadata */}
                   <div className="pt-6 flex flex-col space-y-2">
-                    <div className="flex items-center justify-between text-xs font-sans text-[#817C72]">
+                    <div className="flex items-center justify-between text-xs font-sans text-[#817C72] dark:text-[#B8B3A8]">
                       <span className="tracking-[0.25em] uppercase text-[#2AA8A1] font-medium">
                         {project.category}
                       </span>
@@ -201,13 +201,13 @@ export default function SelectedProjects() {
                     </div>
 
                     <Link href={`/projects`} className="group/title">
-                      <h3 className="font-serif text-2xl sm:text-3xl text-[#171714] font-normal leading-snug group-hover/title:text-[#2AA8A1] transition-colors flex items-center justify-between">
+                      <h3 className="font-serif text-2xl sm:text-3xl text-[#171714] dark:text-[#F5F3EE] font-normal leading-snug group-hover/title:text-[#2AA8A1] transition-colors flex items-center justify-between">
                         <span>{project.title}</span>
                       </h3>
                     </Link>
 
                     {project.description && (
-                      <p className="text-xs sm:text-sm text-[#817C72] font-sans font-light leading-relaxed pt-1">
+                      <p className="text-xs sm:text-sm text-[#817C72] dark:text-[#B8B3A8] font-sans font-light leading-relaxed pt-1">
                         {project.description}
                       </p>
                     )}
@@ -220,13 +220,13 @@ export default function SelectedProjects() {
 
         {/* Portfolio Monograph Footer Link */}
         <div className="mt-20 sm:mt-24 pt-10 border-t border-[#919297]/15 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-6">
-          <p className="text-xs sm:text-sm font-sans tracking-wide text-[#817C72]">
+          <p className="text-xs sm:text-sm font-sans tracking-wide text-[#817C72] dark:text-[#B8B3A8]">
             Detailed project dossiers, material specifications, and photographic archives available on request.
           </p>
 
           <Link
             href="/projects"
-            className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#171714] hover:text-[#2AA8A1] transition-colors"
+            className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] font-sans font-medium text-[#171714] dark:text-[#F5F3EE] hover:text-[#2AA8A1] transition-colors"
           >
             <span>VIEW COMPLETE ARCHIVE</span>
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#41D2CB]" />
